@@ -1,0 +1,14 @@
+﻿@model Domain.IdentityModels.CustomUser
+@{
+    ViewData["Title"] = "ChangeUserRole";
+}
+
+<h1>Change User Role</h1>
+
+<form asp-action="ChangeUserRole" method="post">
+    @Html.HiddenFor(m => m.Id)
+    <select asp-for="Role" asp-items="Html.GetEnumSelectList<Domain.IdentityModels.Role>()">
+        <option value="">Choose a role</option>
+    </select>
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
