@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Repository;
 using Repository.Implementation;
 using Repository.Interface;
+using Services;
 using Services.Implementation;
 using Services.Interface;
 using Stripe;
@@ -46,6 +47,11 @@ namespace Web
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
             services.AddScoped(typeof(IOrderRepository), typeof(OrderRepository));
+
+            services.AddScoped<EmailSettings>(es => emailService);
+            services.AddScoped<IEmailService, EmailService>(email => new EmailService(emailService));
+            services.AddScoped<IBackgroundEmailSender, BackgroundEmailSender>();
+            services.AddHostedService<ConsumeScopedHostedService>();
 
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
