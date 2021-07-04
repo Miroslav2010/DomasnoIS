@@ -41,6 +41,7 @@ namespace Services.Implementation
                 emailMessage.To.Add(new MailboxAddress(item.MailTo));
 
                 messages.Add(emailMessage);
+
             }
 
 

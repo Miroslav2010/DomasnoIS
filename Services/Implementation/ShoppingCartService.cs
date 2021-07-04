@@ -118,7 +118,8 @@ namespace Services.Implementation
                     TicketId = z.Ticket.Id,
                     Ticket = z.Ticket,
                     OrderId = order.Id,
-                    Order = order
+                    Order = order,
+                    Quantity = z.Quantity
                 }).ToList();
 
                 StringBuilder sb = new StringBuilder();
